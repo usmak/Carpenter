@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisan Woodworks | Custom Carpentry & Woodworking</title>
+  <meta name="description" content="Premium custom furniture, cabinetry, home renovations, and professional carpentry services. Crafting quality woodwork that lasts generations.">
+  <meta name="theme-color" content="#2D1810">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { scroll-behavior: smooth; }
+    :root {
+      --walnut: #2D1810;
+      --walnut-light: #4A2A1E;
+      --oak: #8D6E63;
+      --oak-light: #A88B7E;
+      --beige: #F5F0EB;
+      --beige-dark: #EDE5DC;
+      --gold: #C8A96E;
+      --gold-light: #D4BA8A;
+      --charcoal: #2C2C2C;
+      --shadow: 0 4px 30px rgba(0,0,0,0.08);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --glass: rgba(255,255,255,0.12);
+      --glass-border: rgba(255,255,255,0.18);
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--charcoal); background: #fff; overflow-x: hidden; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+
+    .section-padding { padding: 5rem 1.25rem; }
+    @media (min-width: 768px) { .section-padding { padding: 6rem 2rem; } }
+    @media (min-width: 1024px) { .section-padding { padding: 7rem 2rem; } }
+
+    .container-custom { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+    .section-title {
+      font-size: 2rem; font-weight: 700; color: var(--walnut);
+      position: relative; display: inline-block;
+    }
+    .section-title::after {
+      content: ''; position: absolute; bottom: -8px; left: 0; width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--oak)); border-radius: 2px;
+    }
+    .section-title-center::after { left: 50%; transform: translateX(-50%); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0.875rem 2rem; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em;
+      background: linear-gradient(135deg, var(--walnut), var(--walnut-light));
+      color: #fff; border: none; cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 15px rgba(45,24,16,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(45,24,16,0.4);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0.875rem 2rem; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em;
+      background: transparent; color: var(--walnut);
+      border: 2px solid var(--walnut); cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .btn-secondary:hover {
+      background: var(--walnut); color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(45,24,16,0.25);
+    }
+
+    .glass-card {
+      background: var(--glass); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+
+    .service-card {
+      background: #fff; border-radius: 1.25rem; padding: 2rem;
+      box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative; overflow: hidden; text-align: center;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--oak));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover {
+      transform: translateY(-10px); box-shadow: var(--shadow-lg);
+    }
+    .service-icon {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--beige), var(--beige-dark));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem; font-size: 1.75rem; color: var(--walnut);
+      transition: all 0.5s ease;
+    }
+    .service-card:hover .service-icon {
+      background: linear-gradient(135deg, var(--walnut), var(--walnut-light));
+      color: var(--gold); transform: rotateY(180deg);
+    }
+
+    .feature-card {
+      background: #fff; border-radius: 1rem; padding: 1.75rem;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease; text-align: center;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .feature-card:hover {
+      transform: translateY(-6px); box-shadow: var(--shadow-lg);
+    }
+    .feature-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--beige), var(--beige-dark));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; font-size: 1.4rem; color: var(--walnut);
+      transition: all 0.4s ease;
+    }
+    .feature-card:hover .feature-icon {
+      background: linear-gradient(135deg, var(--walnut), var(--walnut-light));
+      color: var(--gold);
+    }
+
+    .step-card {
+      background: #fff; border-radius: 1.25rem; padding: 2rem;
+      box-shadow: var(--shadow); text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .step-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .step-number {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--walnut), var(--walnut-light));
+      color: var(--gold); font-size: 1.3rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; font-family: 'Playfair Display', serif;
+    }
+
+    .testimonial-card {
+      background: #fff; border-radius: 1.25rem; padding: 2rem;
+      box-shadow: var(--shadow); min-width: 320px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .portfolio-item {
+      border-radius: 1rem; overflow: hidden; position: relative;
+      cursor: pointer; box-shadow: var(--shadow);
+    }
+    .portfolio-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .portfolio-item:hover img { transform: scale(1.08); }
+    .portfolio-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(45,24,16,0.85) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.5s ease;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem; color: #fff;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+    .nav-link {
+      position: relative; font-weight: 500; font-size: 0.9rem;
+      color: rgba(255,255,255,0.85); transition: color 0.3s;
+      cursor: pointer;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+      background: var(--gold); transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-scrolled .nav-link { color: var(--charcoal); }
+    .nav-scrolled .nav-link:hover { color: var(--walnut); }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 0.75rem; box-shadow: 0 20px 60px rgba(0,0,0,0.5); object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 2rem; color: #fff;
+      font-size: 2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.3s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    .filter-btn {
+      padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.85rem;
+      border: 2px solid var(--oak); background: transparent; color: var(--oak);
+      cursor: pointer; transition: all 0.3s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--walnut); color: #fff; border-color: var(--walnut);
+    }
+
+    .carousel-track {
+      display: flex; gap: 1.5rem; transition: transform 0.5s ease;
+    }
+    .carousel-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #fff; border: 2px solid var(--oak);
+      color: var(--walnut); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; font-size: 1rem; flex-shrink: 0;
+    }
+    .carousel-btn:hover { background: var(--walnut); color: #fff; border-color: var(--walnut); }
+
+    .whatsapp-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.6rem; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+
+    .back-to-top {
+      position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 999;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--walnut); color: #fff; border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(45,24,16,0.3);
+      opacity: 0; transform: translateY(20px);
+      transition: all 0.3s ease; pointer-events: none;
+    }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(45,24,16,0.4); }
+
+    .star-rating { color: #F4B400; letter-spacing: 2px; }
+
+    .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-in { opacity: 0; transition: opacity 0.7s ease; }
+    .fade-in.visible { opacity: 1; }
+
+    .nav-scrolled { background: rgba(255,255,255,0.95) !important; backdrop-filter: blur(20px); box-shadow: 0 2px 30px rgba(0,0,0,0.08); }
+
+    @media (max-width: 768px) {
+      .section-title { font-size: 1.6rem; }
+      .hero-heading { font-size: 2rem !important; }
+      .hero-sub { font-size: 1rem !important; }
+      .testimonial-card { min-width: 280px; }
+      .hamburger { display: flex !important; }
+      .nav-menu {
+        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+        background: #fff; flex-direction: column; padding: 5rem 2rem 2rem;
+        box-shadow: -5px 0 40px rgba(0,0,0,0.1);
+        transition: right 0.4s ease; z-index: 40;
+      }
+      .nav-menu.open { right: 0; }
+      .nav-scrolled .nav-link { color: var(--charcoal) !important; }
+    }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 50; padding: 4px;
+    }
+    .hamburger span {
+      width: 26px; height: 2.5px; background: #fff; border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled .hamburger span { background: var(--charcoal); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(45,24,16,0.75) 0%, rgba(45,24,16,0.3) 100%);
+    }
+
+    input, textarea, select {
+      width: 100%; padding: 0.875rem 1.125rem; border-radius: 12px;
+      border: 1.5px solid #E0D8D0; background: #fff;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      transition: border-color 0.3s, box-shadow 0.3s; outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--oak); box-shadow: 0 0 0 4px rgba(141,110,99,0.12); }
+
+    .portfolio-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-auto-rows: 240px;
+    }
+    .portfolio-grid .portfolio-item:nth-child(3n+1) { grid-row: span 2; }
+    .portfolio-grid .portfolio-item:nth-child(5n+2) { grid-row: span 1; }
+
+    @media (max-width: 640px) {
+      .portfolio-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
+      .portfolio-grid .portfolio-item:nth-child(3n+1) { grid-row: span 1; }
+    }
+
+    .process-line {
+      position: absolute; top: 28px; left: calc(50% + 36px); right: calc(-50% + 36px);
+      height: 2px; background: linear-gradient(90deg, var(--gold), var(--oak));
+    }
+    @media (max-width: 768px) { .process-line { display: none; } }
+
+    .map-placeholder {
+      background: var(--beige); border-radius: 1rem; overflow: hidden;
+      height: 280px; display: flex; align-items: center; justify-content: center;
+      color: var(--oak); font-size: 1rem; border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+      z-index: 35; display: none;
+    }
+    .mobile-overlay.active { display: block; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 0; z-index: 10000;
+      padding: 0.5rem 1rem; background: var(--walnut); color: #fff;
+      font-weight: 600; transition: top 0.3s;
+    }
+    .skip-link:focus { top: 0; }
+  </style>
+</head>
+<body>
+  <a href="#hero" class="skip-link">Skip to main content</a>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background: transparent;">
+    <div class="container-custom flex items-center justify-between px-5 py-4">
+      <a href="#hero" class="flex items-center gap-2.5 text-white nav-scrolled:text-[var(--walnut)] transition-colors z-50" aria-label="Artisan Woodworks Home">
+        <div class="w-10 h-10 rounded-lg bg-white/20 backdrop-blur flex items-center justify-center text-[var(--gold)]" style="background: linear-gradient(135deg, var(--walnut), var(--gold));">
+          <i class="fas fa-hammer text-white text-lg"></i>
+        </div>
+        <span class="font-semibold text-lg tracking-wide" style="font-family: 'Playfair Display', serif;">Artisan<span class="text-[var(--gold)]">Woodworks</span></span>
+      </a>
+
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-menu flex items-center gap-8" id="navMenu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li>
+          <a href="#contact" class="btn-primary text-sm px-5 py-2.5">
+            <i class="fas fa-phone-alt"></i> Free Quote
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611485988300-b7530defb8e2?q=80&w=1920&auto=format&fit=crop');"></div>
+    <div class="absolute inset-0 hero-overlay"></div>
+
+    <div class="relative z-10 container-custom px-5 text-center md:text-left">
+      <div class="max-w-3xl mx-auto md:mx-0">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-white/90 text-sm mb-6 fade-up" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+          <i class="fas fa-star text-[var(--gold)] text-xs"></i>
+          <span>Trusted since 2008</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--gold)]"></span>
+          <span>500+ Happy Clients</span>
+        </div>
+
+        <h1 class="hero-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6 fade-up" style="font-family: 'Playfair Display', serif;">
+          Crafting Quality Woodwork<br>
+          <span class="text-[var(--gold)]">That Lasts Generations</span>
+        </h1>
+
+        <p class="hero-sub text-lg md:text-xl text-white/80 max-w-2xl mb-8 fade-up">
+          Custom Furniture, Home Renovations, Cabinetry &amp; Professional Carpentry Services
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start fade-up">
+          <a href="#contact" class="btn-primary text-base px-8 py-3.5">
+            <i class="fas fa-pencil-ruler"></i> Get a Free Quote
+          </a>
+          <a href="#portfolio" class="btn-secondary text-base px-8 py-3.5" style="border-color: rgba(255,255,255,0.6); color: #fff;">
+            <i class="fas fa-images"></i> View Our Work
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-8 mt-12 fade-up">
+          <div><div class="text-2xl font-bold text-[var(--gold)]">16+</div><div class="text-white/60 text-sm">Years Experience</div></div>
+          <div><div class="text-2xl font-bold text-[var(--gold)]">500+</div><div class="text-white/60 text-sm">Projects Done</div></div>
+          <div><div class="text-2xl font-bold text-[var(--gold)]">100%</div><div class="text-white/60 text-sm">Satisfaction</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about" class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-up">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?q=80&w=800&auto=format&fit=crop" alt="Master carpenter at work in workshop" class="rounded-2xl shadow-lg w-full h-[420px] object-cover">
+            <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 hidden md:block" style="border: 1px solid rgba(0,0,0,0.04);">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-[var(--beige)] flex items-center justify-center text-[var(--walnut)] text-xl">
+                  <i class="fas fa-medal"></i>
+                </div>
+                <div>
+                  <div class="font-bold text-[var(--walnut)]">Award Winning</div>
+                  <div class="text-sm text-gray-500">Craftsmanship</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up">
+          <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">About Us</span>
+          <h2 class="section-title text-3xl md:text-4xl mt-3 mb-6">Passionate About <br>Perfecting Woodwork</h2>
+          <p class="text-gray-600 leading-relaxed mb-5">
+            For over 16 years, Artisan Woodworks has been transforming spaces with bespoke woodworking and professional carpentry. What started as a one-man workshop has grown into a trusted team of skilled craftsmen dedicated to quality, precision, and timeless design.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            We believe every piece of wood tells a story. From custom furniture that becomes a family heirloom to complete home renovations, we bring your vision to life with unparalleled attention to detail.
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[var(--beige)] flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-check-circle text-[var(--gold)]"></i></div>
+              <span class="text-sm font-medium">Premium Hardwoods</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[var(--beige)] flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-check-circle text-[var(--gold)]"></i></div>
+              <span class="text-sm font-medium">Custom Designs</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[var(--beige)] flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-check-circle text-[var(--gold)]"></i></div>
+              <span class="text-sm font-medium">Lifetime Warranty</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[var(--beige)] flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-check-circle text-[var(--gold)]"></i></div>
+              <span class="text-sm font-medium">Eco-Friendly</span>
+            </div>
+          </div>
+          <a href="#services" class="btn-primary"><i class="fas fa-arrow-right"></i> Explore Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section id="services" class="section-padding" style="background: var(--beige);">
+    <div class="container-custom">
+      <div class="text-center mb-14 fade-up">
+        <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">What We Do</span>
+        <h2 class="section-title section-title-center text-3xl md:text-4xl mt-3">Premium Woodworking Services</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mt-8">From concept to creation, we deliver exceptional craftsmanship tailored to your unique style and needs.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-couch"></i></div><h3 class="text-xl font-bold text-[var(--walnut)] mb-2">Custom Furniture</h3><p class="text-gray-500 text-sm leading-relaxed">Bespoke tables, chairs, beds, and storage pieces designed to match your space and style perfectly.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-kitchen-set"></i></div><h3 class="text-xl font-bold text-[var(--walnut)] mb-2">Kitchen Cabinets</h3><p class="text-gray-500 text-sm leading-relaxed">Custom cabinetry with premium materials and precise joinery for kitchens that inspire.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-house-chimney"></i></div><h3 class="text-xl font-bold text-[var(--walnut)] mb-2">Home Renovations</h3><p class="text-gray-500 text-sm leading-relaxed">Full-scale home transformations including trim work, flooring, and structural carpentry.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-door-open"></i></div><h3 class="text-xl font-bold text-[var(--walnut)] mb-2">Wooden Doors &amp; Windows</h3><p class="text-gray-500 text-sm leading-relaxed">Handcrafted doors and windows built to endure with timeless elegance and energy efficiency.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-tree"></i></div><h3 class="text-xl font-bold text-[var(--walnut)] mb-2">Deck &amp; Outdoor</h3><p class="text-gray-500 text-sm leading-relaxed">Beautiful outdoor decks, pergolas, and gazebos crafted to withstand the elements beautifully.</p></div>
+        <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-wrench"></i></div><h3 class="text-xl font-bold text-[var(--walnut)] mb-2">Repair &amp; Restoration</h3><p class="text-gray-500 text-sm leading-relaxed">Expert restoration of antique furniture and structural repairs that breathe new life into old pieces.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY CHOOSE US ==================== -->
+  <section id="why-us" class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-14 fade-up">
+        <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">Why Choose Us</span>
+        <h2 class="section-title section-title-center text-3xl md:text-4xl mt-3">Built on Quality &amp; Trust</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mt-8">We don't just build furniture — we build relationships. Here's why homeowners trust us with their spaces.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="feature-card fade-up"><div class="feature-icon"><i class="fas fa-users"></i></div><h3 class="font-bold text-[var(--walnut)] mb-1.5">Experienced Craftsmen</h3><p class="text-gray-500 text-sm">Master woodworkers with years of hands-on experience in traditional and modern techniques.</p></div>
+        <div class="feature-card fade-up"><div class="feature-icon"><i class="fas fa-tree"></i></div><h3 class="font-bold text-[var(--walnut)] mb-1.5">Premium Materials</h3><p class="text-gray-500 text-sm">We source only the finest hardwoods, veneers, and finishes for lasting beauty and durability.</p></div>
+        <div class="feature-card fade-up"><div class="feature-icon"><i class="fas fa-tag"></i></div><h3 class="font-bold text-[var(--walnut)] mb-1.5">Affordable Pricing</h3><p class="text-gray-500 text-sm">Exceptional value with transparent pricing — no hidden fees, no surprises.</p></div>
+        <div class="feature-card fade-up"><div class="feature-icon"><i class="fas fa-clock"></i></div><h3 class="font-bold text-[var(--walnut)] mb-1.5">On-Time Delivery</h3><p class="text-gray-500 text-sm">We respect your schedule and deliver every project on time, every time.</p></div>
+        <div class="feature-card fade-up"><div class="feature-icon"><i class="fas fa-pen-ruler"></i></div><h3 class="font-bold text-[var(--walnut)] mb-1.5">Custom Designs</h3><p class="text-gray-500 text-sm">Every project is tailored to your vision — no templates, no compromises.</p></div>
+        <div class="feature-card fade-up"><div class="feature-icon"><i class="fas fa-shield-halved"></i></div><h3 class="font-bold text-[var(--walnut)] mb-1.5">Guaranteed Quality</h3><p class="text-gray-500 text-sm">We stand behind our work with a full satisfaction guarantee and craftsmanship warranty.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PORTFOLIO ==================== -->
+  <section id="portfolio" class="section-padding" style="background: var(--beige);">
+    <div class="container-custom">
+      <div class="text-center mb-12 fade-up">
+        <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">Our Portfolio</span>
+        <h2 class="section-title section-title-center text-3xl md:text-4xl mt-3">Recent Projects</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mt-8">Browse through our latest work. Each project reflects our passion for precision and beautiful design.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-10 fade-up" id="filterButtons">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="furniture">Furniture</button>
+        <button class="filter-btn" data-filter="cabinets">Cabinets</button>
+        <button class="filter-btn" data-filter="renovation">Renovation</button>
+        <button class="filter-btn" data-filter="outdoor">Outdoor</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-item fade-in" data-category="furniture">
+          <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?q=80&w=800&auto=format&fit=crop" alt="Custom dining table" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Custom Dining Table</h4><p class="text-sm text-white/80">Solid oak with live edge</p></div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="cabinets">
+          <img src="https://images.unsplash.com/photo-1556909114-f8f7c5a5e4a4?q=80&w=800&auto=format&fit=crop" alt="Modern kitchen cabinets" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Kitchen Cabinetry</h4><p class="text-sm text-white/80">Walnut shaker-style</p></div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="renovation">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Home renovation project" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Living Room Makeover</h4><p class="text-sm text-white/80">Full custom built-ins</p></div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="furniture">
+          <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?q=80&w=800&auto=format&fit=crop" alt="Handcrafted bed frame" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Master Bed Frame</h4><p class="text-sm text-white/80">Cherry wood with upholstered headboard</p></div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="outdoor">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=800&auto=format&fit=crop" alt="Deck construction" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Backyard Deck</h4><p class="text-sm text-white/80">Cedar with built-in seating</p></div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="cabinets">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Bathroom vanity" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Bathroom Vanity</h4><p class="text-sm text-white/80">Custom oak with marble top</p></div>
+        </div>
+        <div class="portfolio-item fade-in" data-category="renovation">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop" alt="Staircase renovation" loading="lazy">
+          <div class="portfolio-overlay"><h4 class="text-lg font-bold">Staircase Renovation</h4><p class="text-sm text-white/80">Curved rail with wrought iron spindles</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section id="testimonials" class="section-padding bg-white overflow-hidden">
+    <div class="container-custom">
+      <div class="text-center mb-14 fade-up">
+        <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">Testimonials</span>
+        <h2 class="section-title section-title-center text-3xl md:text-4xl mt-3">What Our Clients Say</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mt-8">Don't just take our word for it — hear from the homeowners we've worked with.</p>
+      </div>
+
+      <div class="relative fade-up">
+        <div class="overflow-hidden" id="carouselContainer">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="testimonial-card flex-shrink-0">
+              <div class="star-rating mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5">"Artisan Woodworks transformed our living room with beautiful custom built-ins. The craftsmanship is absolutely stunning — every detail was perfect. They were professional, punctual, and a pleasure to work with."</p>
+              <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-[var(--beige)] flex items-center justify-center font-bold text-[var(--walnut)] text-sm">SM</div><div><div class="font-semibold text-sm">Sarah M.</div><div class="text-xs text-gray-400">Homeowner, Austin</div></div></div>
+            </div>
+            <div class="testimonial-card flex-shrink-0">
+              <div class="star-rating mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5">"Our custom dining table is the centerpiece of our home. The quality of the joinery and the richness of the wood exceeded our expectations. Worth every penny. Highly recommend!"</p>
+              <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-[var(--beige)] flex items-center justify-center font-bold text-[var(--walnut)] text-sm">JD</div><div><div class="font-semibold text-sm">James D.</div><div class="text-xs text-gray-400">Homeowner, Denver</div></div></div>
+            </div>
+            <div class="testimonial-card flex-shrink-0">
+              <div class="star-rating mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5">"We hired them for a full kitchen renovation and couldn't be happier. The cabinets are gorgeous and the team was incredibly tidy throughout the process. They finished ahead of schedule!"</p>
+              <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-[var(--beige)] flex items-center justify-center font-bold text-[var(--walnut)] text-sm">LK</div><div><div class="font-semibold text-sm">Linda K.</div><div class="text-xs text-gray-400">Homeowner, Portland</div></div></div>
+            </div>
+            <div class="testimonial-card flex-shrink-0">
+              <div class="star-rating mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="text-gray-600 text-sm leading-relaxed mb-5">"The deck they built is phenomenal. It's our favorite place to relax and entertain. The attention to detail and the quality of the cedar they used is top-notch. Five stars all the way!"</p>
+              <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-[var(--beige)] flex items-center justify-center font-bold text-[var(--walnut)] text-sm">RT</div><div><div class="font-semibold text-sm">Robert T.</div><div class="text-xs text-gray-400">Homeowner, Seattle</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center gap-3 mt-8">
+          <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROCESS ==================== -->
+  <section id="process" class="section-padding" style="background: var(--beige);">
+    <div class="container-custom">
+      <div class="text-center mb-14 fade-up">
+        <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">Our Process</span>
+        <h2 class="section-title section-title-center text-3xl md:text-4xl mt-3">How We Bring Your Vision to Life</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mt-8">A seamless journey from your first idea to the final reveal.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div class="step-card fade-up relative">
+          <div class="process-line"></div>
+          <div class="step-number">01</div>
+          <h3 class="font-bold text-[var(--walnut)] mb-1.5">Consultation</h3>
+          <p class="text-gray-500 text-sm">We discuss your vision, take measurements, and understand your style and budget.</p>
+        </div>
+        <div class="step-card fade-up relative">
+          <div class="process-line"></div>
+          <div class="step-number">02</div>
+          <h3 class="font-bold text-[var(--walnut)] mb-1.5">Design</h3>
+          <p class="text-gray-500 text-sm">We create detailed drawings and 3D renders for your approval before building.</p>
+        </div>
+        <div class="step-card fade-up relative">
+          <div class="process-line"></div>
+          <div class="step-number">03</div>
+          <h3 class="font-bold text-[var(--walnut)] mb-1.5">Crafting</h3>
+          <p class="text-gray-500 text-sm">Our master craftsmen bring the design to life using premium materials and techniques.</p>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-number">04</div>
+          <h3 class="font-bold text-[var(--walnut)] mb-1.5">Installation</h3>
+          <p class="text-gray-500 text-sm">We carefully install your project and ensure every detail meets our high standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section id="contact" class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-14 fade-up">
+        <span class="text-[var(--gold)] font-semibold text-sm tracking-widest uppercase">Get in Touch</span>
+        <h2 class="section-title section-title-center text-3xl md:text-4xl mt-3">Let's Start Your Project</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mt-8">Ready to bring your vision to life? Fill out the form below and we'll get back to you within 24 hours.</p>
+      </div>
+      <div class="grid lg:grid-cols-5 gap-10">
+        <div class="lg:col-span-3 fade-up">
+          <form id="contactForm" class="space-y-5" novalidate>
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div><label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label><input type="text" id="name" placeholder="John Doe" required></div>
+              <div><label for="phone" class="block text-sm font-medium text-gray-700 mb-1.5">Phone Number *</label><input type="tel" id="phone" placeholder="(555) 123-4567" required></div>
+            </div>
+            <div><label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email Address *</label><input type="email" id="email" placeholder="john@example.com" required></div>
+            <div><label for="service" class="block text-sm font-medium text-gray-700 mb-1.5">Service Interested In</label><select id="service"><option value="">Select a service...</option><option>Custom Furniture</option><option>Kitchen Cabinets</option><option>Home Renovations</option><option>Doors &amp; Windows</option><option>Deck &amp; Outdoor</option><option>Repair &amp; Restoration</option><option>Other</option></select></div>
+            <div><label for="message" class="block text-sm font-medium text-gray-700 mb-1.5">Project Details *</label><textarea id="message" rows="4" placeholder="Tell us about your project, dimensions, style preferences, timeline..." required></textarea></div>
+            <button type="submit" class="btn-primary w-full justify-center py-3.5"><i class="fas fa-paper-plane"></i> Send Message</button>
+          </form>
+          <div id="formSuccess" class="hidden p-6 rounded-xl bg-green-50 border border-green-200 text-green-700 text-center mt-4">
+            <i class="fas fa-check-circle text-2xl mb-2"></i>
+            <p class="font-semibold">Thank you! Your message has been sent.</p>
+            <p class="text-sm mt-1">We'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-2 fade-up">
+          <div class="bg-[var(--beige)] rounded-2xl p-6 md:p-8 h-full">
+            <h3 class="text-xl font-bold text-[var(--walnut)] mb-6">Contact Information</h3>
+            <div class="space-y-5">
+              <div class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-phone"></i></div><div><div class="font-semibold text-sm">Phone</div><a href="tel:+15551234567" class="text-gray-600 text-sm hover:text-[var(--walnut)]">(555) 123-4567</a></div></div>
+              <div class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-envelope"></i></div><div><div class="font-semibold text-sm">Email</div><a href="mailto:hello@artisanwoodworks.com" class="text-gray-600 text-sm hover:text-[var(--walnut)]">hello@artisanwoodworks.com</a></div></div>
+              <div class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-location-dot"></i></div><div><div class="font-semibold text-sm">Location</div><span class="text-gray-600 text-sm">123 Carpenter St, Suite 100<br>Austin, TX 78701</span></div></div>
+              <div class="flex items-start gap-4"><div class="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-[var(--walnut)] flex-shrink-0"><i class="fas fa-clock"></i></div><div><div class="font-semibold text-sm">Working Hours</div><span class="text-gray-600 text-sm">Mon – Fri: 7:00 AM – 6:00 PM<br>Sat: 8:00 AM – 3:00 PM</span></div></div>
+            </div>
+            <div class="mt-6">
+              <div class="map-placeholder">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.95400871616!2d-97.82222864179686!3d30.307760705074345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b599a0cc034f%3A0x46d0b8c7e1b0d6b8!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Our Location"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA BANNER ==================== -->
+  <section class="py-16" style="background: linear-gradient(135deg, var(--walnut), #1a0e0a);">
+    <div class="container-custom text-center px-5 fade-up">
+      <h2 class="text-2xl md:text-4xl font-bold text-white mb-4" style="font-family: 'Playfair Display', serif;">Ready to Transform Your Space?</h2>
+      <p class="text-white/70 max-w-lg mx-auto mb-8">Schedule a free consultation today and get a personalized quote for your project.</p>
+      <a href="#contact" class="btn-primary text-base px-10 py-3.5" style="background: linear-gradient(135deg, var(--gold), #b8944a); box-shadow: 0 4px 20px rgba(200,169,110,0.4);"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-[var(--walnut)] text-white py-16">
+    <div class="container-custom px-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+        <div class="fade-up">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, var(--walnut-light), var(--gold));">
+              <i class="fas fa-hammer text-white text-lg"></i>
+            </div>
+            <span class="font-semibold text-lg" style="font-family: 'Playfair Display', serif;">Artisan<span class="text-[var(--gold)]">Woodworks</span></span>
+          </div>
+          <p class="text-white/60 text-sm leading-relaxed">Crafting quality woodwork that lasts generations. Custom furniture, cabinetry, renovations, and professional carpentry services.</p>
+        </div>
+        <div class="fade-up">
+          <h4 class="font-semibold text-[var(--gold)] mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#about" class="text-white/60 hover:text-[var(--gold)] transition-colors">About Us</a></li>
+            <li><a href="#services" class="text-white/60 hover:text-[var(--gold)] transition-colors">Services</a></li>
+            <li><a href="#portfolio" class="text-white/60 hover:text-[var(--gold)] transition-colors">Portfolio</a></li>
+            <li><a href="#testimonials" class="text-white/60 hover:text-[var(--gold)] transition-colors">Testimonials</a></li>
+            <li><a href="#contact" class="text-white/60 hover:text-[var(--gold)] transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div class="fade-up">
+          <h4 class="font-semibold text-[var(--gold)] mb-4">Services</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#services" class="text-white/60 hover:text-[var(--gold)] transition-colors">Custom Furniture</a></li>
+            <li><a href="#services" class="text-white/60 hover:text-[var(--gold)] transition-colors">Kitchen Cabinets</a></li>
+            <li><a href="#services" class="text-white/60 hover:text-[var(--gold)] transition-colors">Home Renovations</a></li>
+            <li><a href="#services" class="text-white/60 hover:text-[var(--gold)] transition-colors">Deck &amp; Outdoor</a></li>
+            <li><a href="#services" class="text-white/60 hover:text-[var(--gold)] transition-colors">Repair &amp; Restoration</a></li>
+          </ul>
+        </div>
+        <div class="fade-up">
+          <h4 class="font-semibold text-[var(--gold)] mb-4">Follow Us</h4>
+          <div class="flex gap-3 mb-4">
+            <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[var(--gold)] hover:text-[var(--walnut)] transition-all"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[var(--gold)] hover:text-[var(--walnut)] transition-all"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[var(--gold)] hover:text-[var(--walnut)] transition-all"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#" aria-label="Houzz" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[var(--gold)] hover:text-[var(--walnut)] transition-all"><i class="fab fa-houzz"></i></a>
+          </div>
+          <p class="text-white/50 text-xs">Stay connected for project updates, tips, and inspiration.</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 text-sm text-white/50">
+        <p>&copy; 2026 Artisan Woodworks. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-[var(--gold)] transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-[var(--gold)] transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== WHATSAPP FLOAT ==================== -->
+  <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ==================== BACK TO TOP ==================== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ==================== LIGHTBOX ==================== -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="Enlarged project image">
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ----- NAVBAR SCROLL -----
+      const navbar = document.getElementById('navbar');
+      let lastScroll = 0;
+      function handleNavScroll() {
+        const scrollY = window.scrollY;
+        if (scrollY > 80) {
+          navbar.classList.add('nav-scrolled');
+          navbar.style.background = 'rgba(255,255,255,0.95)';
+        } else {
+          navbar.classList.remove('nav-scrolled');
+          navbar.style.background = 'transparent';
+        }
+        lastScroll = scrollY;
+      }
+      window.addEventListener('scroll', handleNavScroll, { passive: true });
+      handleNavScroll();
+
+      // ----- MOBILE MENU -----
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      const overlay = document.getElementById('mobileOverlay');
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('open');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
+      }
+      function closeMenu() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', closeMenu);
+      navMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // ----- SCROLL ANIMATIONS -----
+      const animateElements = document.querySelectorAll('.fade-up, .fade-in');
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+      animateElements.forEach(function(el) { observer.observe(el); });
+
+      // ----- PORTFOLIO FILTER -----
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+          portfolioItems.forEach(function(item) {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+              item.style.display = 'block';
+              setTimeout(function() { item.style.opacity = '1'; }, 50);
+            } else {
+              item.style.opacity = '0';
+              setTimeout(function() { item.style.display = 'none'; }, 300);
+            }
+          });
+        });
+      });
+
+      // ----- LIGHTBOX -----
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxClose = document.getElementById('lightboxClose');
+      portfolioItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          const img = item.querySelector('img');
+          if (img) {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      // ----- TESTIMONIALS CAROUSEL -----
+      const track = document.getElementById('carouselTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let currentSlide = 0;
+      function getVisibleCards() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 640) return 2;
+        return 1;
+      }
+      function getCardWidth() {
+        const card = track.querySelector('.testimonial-card');
+        if (!card) return 320;
+        const gap = 24;
+        const style = getComputedStyle(track);
+        const gapVal = parseFloat(style.gap) || gap;
+        return card.offsetWidth + gapVal;
+      }
+      function updateCarousel() {
+        const total = track.children.length;
+        const visible = getVisibleCards();
+        const max = Math.max(0, total - visible);
+        if (currentSlide > max) currentSlide = max;
+        if (currentSlide < 0) currentSlide = 0;
+        const offset = currentSlide * getCardWidth();
+        track.style.transform = 'translateX(-' + offset + 'px)';
+      }
+      let resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateCarousel, 150);
+      });
+      prevBtn.addEventListener('click', function() {
+        currentSlide--;
+        if (currentSlide < 0) currentSlide = Math.max(0, track.children.length - getVisibleCards());
+        updateCarousel();
+      });
+      nextBtn.addEventListener('click', function() {
+        currentSlide++;
+        const max = Math.max(0, track.children.length - getVisibleCards());
+        if (currentSlide > max) currentSlide = 0;
+        updateCarousel();
+      });
+      // Touch support
+      let touchStartX = 0, touchEndX = 0;
+      track.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      track.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) { currentSlide++; } else { currentSlide--; }
+          const max = Math.max(0, track.children.length - getVisibleCards());
+          if (currentSlide > max) currentSlide = 0;
+          if (currentSlide < 0) currentSlide = max;
+          updateCarousel();
+        }
+      }, { passive: true });
+
+      // ----- BACK TO TOP -----
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }, { passive: true });
+      backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ----- CONTACT FORM -----
+      const form = document.getElementById('contactForm');
+      const successMsg = document.getElementById('formSuccess');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!name || !phone || !email || !message) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        form.style.display = 'none';
+        successMsg.classList.remove('hidden');
+      });
+
+      // ----- SMOOTH ANCHOR SCROLLING -----
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const offset = 80;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // ----- KEYBOARD NAV (hamburger) -----
+      hamburger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+      });
+    })();
+  </script>
+</body>
+</html>
